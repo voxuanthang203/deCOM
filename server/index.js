@@ -1,6 +1,8 @@
 const express = require("express");
 const app = express();
+const transactionRouter = require("./routes/transaction");
 const userRouter = require("./routes/user");
+require("dotenv").config();
 
 const PORT = process.env.PORT || 8080;
 
@@ -8,10 +10,7 @@ const PORT = process.env.PORT || 8080;
 app.use(express.json());
 
 // Use routers
-app.use("/user", userRouter);
-
-app.get("/", (req, res) => {
-  res.send("Hello");
-});
+app.use("/transaction", transactionRouter);
+app.use("/users", userRouter);
 
 app.listen(PORT, () => console.log("Listening to port", PORT));

@@ -10,6 +10,7 @@ error Ecommerce__ItemNotExisted();
 error Ecommerce__IncorrectAmountSent();
 error Ecommerce__UnsuccessfulEthTransfer();
 error Ecommerce__NotAnOwner();
+error Ecommerce__NotAnOwnerOfContract();
 error Ecommerce__UserOrManufacturerAlreadyExists();
 error Ecommerce__ManufacturerNotExisted();
 
@@ -78,6 +79,16 @@ contract Ecommerce is ReentrancyGuard {
     );
 
     /**
+     * @dev All modifiers
+     */
+    modifier _onlyOwner() {
+        if (msg.sender != i_owner) {
+            revert Ecommerce__NotAnOwnerOfContract();
+        }
+        _;
+    }
+
+    /**
      * @dev ====Define the neccesarry variables====
      */
     address payable private immutable i_owner;
@@ -101,7 +112,9 @@ contract Ecommerce is ReentrancyGuard {
      */
 
     // Function to buy a market item
-    function confirmBuyMarketItem(uint256 itemId) public payable nonReentrant {
+    function confirmBuyMarketItem(
+        uint256 itemId
+    ) public payable nonReentrant {
         User storage user = s_userAddressToUser[msg.sender];
         MarketItem memory marketItem = s_itemIdToMarketItem[itemId];
 
@@ -165,7 +178,9 @@ contract Ecommerce is ReentrancyGuard {
     }
 
     // Function to report that no item is received
-    function reportNotReceiveMarketItem(uint256 itemId) public nonReentrant {
+    function reportNotReceiveMarketItem(
+        uint256 itemId
+    ) public nonReentrant {
         User storage user = s_userAddressToUser[msg.sender];
         if (!user.flag) {
             revert Ecommerce__UserNotExisted();
@@ -276,17 +291,17 @@ contract Ecommerce is ReentrancyGuard {
     }
 
     // Sign up a new manufacturer
-    function signUpNewManufacturer() public {
+    function signUpNewManufacturer(address userAddress) public _onlyOwner {
         if (
-            s_userAddressToUser[msg.sender].flag ||
-            s_manufacturerDoesExist[msg.sender]
+            s_userAddressToUser[userAddress].flag ||
+            s_manufacturerDoesExist[userAddress]
         ) {
             revert Ecommerce__UserOrManufacturerAlreadyExists();
         }
 
-        s_manufacturerDoesExist[msg.sender] = true;
+        s_manufacturerDoesExist[userAddress] = true;
 
-        emit NewManufacturerCreated(msg.sender);
+        emit NewManufacturerCreated(userAddress);
     }
 
     // // Mint a new NFT (As a manufacturer)
@@ -358,11 +373,16 @@ contract Ecommerce is ReentrancyGuard {
     }
 
     // Fetch all items purchased by the current user
-    function fetchPurchasedItems() public view returns (MarketItem[] memory) {
+    function fetchPurchasedItems()
+        public
+        view
+        returns (MarketItem[] memory)
+    {
         if (!s_userAddressToUser[msg.sender].flag) {
             revert Ecommerce__UserNotExisted();
         }
-        uint256 purchasedNum = s_userAddressToUser[msg.sender].purchasedNftNum;
+        uint256 purchasedNum = s_userAddressToUser[msg.sender]
+            .purchasedNftNum;
         MarketItem[] memory marketItems = new MarketItem[](purchasedNum);
         uint256 marketItemNum = s_itemIds.current();
         uint256 index = 0;
@@ -386,7 +406,9 @@ contract Ecommerce is ReentrancyGuard {
     }
 
     // Check if an address is a manufacturer or not
-    function isManufacturer(address userAddress) public view returns (bool) {
+    function isManufacturer(
+        address userAddress
+    ) public view returns (bool) {
         return s_manufacturerDoesExist[userAddress];
     }
 }

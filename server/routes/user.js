@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
+const { create } = require("../model/controller/user.controller.js");
 
-// Get the user information
-router.get("/info", auth, (req, res) => {});
+router.post("/create", create);
 
 module.exports = router;
