@@ -120,7 +120,7 @@ const Login = () => {
                     <div>
                       <Link
                         to="https://github.com/login/oauth/authorize?client_id=9fe257e93406847c679f&redirect_uri=http%3A%2F%2F127.0.0.1%3A5173%2Foauth%2Fcallback%2Fgithub&scope=user:email&prompt=consent"
-                        className="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
+                        className="w-full inline-flex  justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
                       >
                         <span className="sr-only">Sign in with GitHub</span>
                         <svg
