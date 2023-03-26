@@ -40,7 +40,7 @@ def update_site_forward(apps, schema_editor):
     _update_or_create_site_with_sequence(
         Site,
         schema_editor.connection,
-        "de-com.tech",
+        "lqdon.com",
         "Hackabull 2023",
     )
 
@@ -51,8 +51,8 @@ def update_site_backward(apps, schema_editor):
     _update_or_create_site_with_sequence(
         Site,
         schema_editor.connection,
-        "de-com.tech",
-        "de-com.tech",
+        "lqdon.com",
+        "lqdon.com",
     )
 
 
