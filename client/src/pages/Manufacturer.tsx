@@ -1,6 +1,7 @@
 import Button from 'components/Button';
 import Item from 'components/Item';
 import NavBar from 'components/Navbar';
+import ShoeShuffle from 'Shoes';
 
 const Manufacturers = () => {
   return (
@@ -18,10 +19,18 @@ const Manufacturers = () => {
             Currently Own NFT
           </h1>
           <div className="flex flex-wrap mx-28 mt-10 gap-8">
-            <Item />
-            <Item />
-            <Item />
-            <Item />
+            {ShoeShuffle().map((shoe) => {
+              if (shoe.name.includes("Nike")) {
+                return (
+                  <Item
+                    key={shoe.name}
+                    name={shoe.name}
+                    image_url={shoe.image_url}
+                    price={shoe.price}
+                  />
+                );
+              }
+            })}
           </div>
         </div>
       </div>

@@ -1,8 +1,9 @@
-import AuthGuard from 'guards/AuthGuard';
 import GuestGuard from 'guards/GuestGuard';
 import { lazy, Suspense } from 'react';
 import { createBrowserRouter, Navigate, useLocation } from 'react-router-dom';
 import LoadingScreen from 'routes/LoadingScreen';
+import Github from 'pages/oauth/Github';
+import Discord from 'pages/oauth/Discord';
 
 const Loadable =
   (Component: React.ComponentType) =>
@@ -37,6 +38,8 @@ const NotFound = Loadable(lazy(() => import('pages/Page404')));
 const router = createBrowserRouter([
   // Home
   { path: '/', element: <Home /> },
+  { path: '/oauth/callback/github', element: <Github /> },
+  { path: '/oauth/callback/discord', element: <Discord />},
 
   // AUTHENTICATION
   {

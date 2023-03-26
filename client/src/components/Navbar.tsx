@@ -1,8 +1,11 @@
 import Button  from 'components/Button';
 import { Link } from 'react-router-dom';
 import { PATH_AUTH } from "routes/paths";
+import useAuth from "stores/useAuth";
 
 const NavBar = () => {
+  const {isAuthenticated, logout } = useAuth();
+
   return (
     <div className="flex p-6 items-center justify-between">
       <h3 className=" text-white px-5 py-2 headerCustom font-[Roboto]">
@@ -34,14 +37,28 @@ const NavBar = () => {
         </Link>
       </div>
       <div className="flex">
-        <Link to={PATH_AUTH.register}>
-          <Button className="text-white rounded-md px-3 py-2 text-sm font-medium border border-primary">
-            Sign Up
+        {isAuthenticated ?
+        (
+          <Button 
+            className="text-white bg-primary"
+            onClick={() => logout()}
+          >
+            Log out
           </Button>
-        </Link>
-        <Link to={PATH_AUTH.login}>
-          <Button className="text-white bg-primary">Sign In</Button>
-        </Link>
+        )
+        :
+        (
+          <>
+          <Link to={PATH_AUTH.register}>
+            <Button className="text-white rounded-md px-3 py-2 text-sm font-medium border border-primary">
+              Sign Up
+            </Button>
+          </Link>
+          <Link to={PATH_AUTH.login}>
+            <Button className="text-white bg-primary">Sign In</Button>
+          </Link>
+          </>
+        )}
       </div>
     </div>
   );

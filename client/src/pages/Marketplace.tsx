@@ -1,6 +1,7 @@
 import Button from 'components/Button';
 import Item from 'components/Item';
 import NavBar from 'components/Navbar';
+import ShoeShuffle from 'Shoes';
 
 const MarketPlace = () => {
   return (
@@ -24,15 +25,15 @@ const MarketPlace = () => {
           <Button className="text-white border border-primary">Nike</Button>
           <Button className="text-white border border-primary">Adidas</Button>
         </div>
-        <div className="mt-10 ml-16 flex m-5 flex-wrap">
-          <Item className="m-5"></Item>
-          <Item className="m-5"></Item>
-          <Item className="m-5"></Item>
-          <Item className="m-5"></Item>
-          <Item className="m-5"></Item>
-          <Item className="m-5"></Item>
-          <Item className="m-5"></Item>
-          <Item className="m-5"></Item>
+        <div className="mt-10 ml-16 gap-10 flex flex-wrap">
+          {ShoeShuffle().map((shoe) => (
+            <Item
+              key={shoe.name}
+              name={shoe.name}
+              image_url={shoe.image_url}
+              price={shoe.price}
+            />
+          ))}
         </div>
       </div>
     </div>
