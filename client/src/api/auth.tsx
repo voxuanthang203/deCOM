@@ -2,7 +2,14 @@ import axios from "axios";
 
 const REST_API_URL = "https://lqdon.com";
 
-export const onRegister = async (body) => {
+interface IRegister {
+  email?: string;
+  username?: string;
+  password: string;
+  password2: string;
+}
+
+export const onRegister = async (body: IRegister) => {
   try {
     const res = await axios.post(
       `${REST_API_URL}/api-auth/v1/registration/`,
@@ -11,45 +18,63 @@ export const onRegister = async (body) => {
 
     return res.data;
   } catch (err) {
-    console.error(err.message);
+    console.error(err);
   }
 };
 
-export const onVerifyEmail = async (body) => {
+
+interface IVerifyEmail {
+  key: string;
+}
+
+export const onVerifyEmail = async (body: IVerifyEmail) => {
   try {
-    const { res } = await axios.post(
+    const res = await axios.post(
       `${REST_API_URL}/api-auth/v1/registration/verify-email/`,
       body
     );
     return res.data;
   } catch (err) {
-    console.error(err.message);
+    console.error(err);
   }
 };
 
-export const onResendVerify = async (body) => {
+interface IResendVerify {
+  email: string;
+}
+
+export const onResendVerify = async (body: IResendVerify) => {
   try {
-    const { res } = await axios.post(
+    const res = await axios.post(
       `${REST_API_URL}/api-auth/v1/registration/resend-email/`,
       body
     );
     return res.data;
   } catch (err) {
-    console.error(err.message);
+    console.error(err);
   }
 };
 
-export const onLogin = async (body) => {
+interface ILogin {
+  email: string;
+  password: string;
+}
+
+export const onLogin = async (body: ILogin) => {
   try {
-    const { res } = await axios.post(
+    const res = await axios.post(
       `${REST_API_URL}/api-auth/v1/login/`,
       body
     );
     return res.data;
   } catch (err) {
-    console.error(err.message);
+    console.error(err);
   }
 };
+
+// interface IResetPassword {
+
+// }
 
 export const onResetPassword = async (body) => {
   try {
