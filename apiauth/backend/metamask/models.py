@@ -9,7 +9,7 @@ from .utils import generate_random
 User = get_user_model()
 
 
-class CannotSignMessageNonCustodialWallet(Exception):
+class CannotSignNonCustodialWallet(Exception):
     pass
 
 
@@ -24,10 +24,10 @@ class NonCustodialWallet(WalletAuthModel):
     refreshed_at = models.DateTimeField(_("Refreshed"), auto_now=True)
 
     def sign_message(self, message):
-        raise CannotSignMessageNonCustodialWallet()
+        raise CannotSignNonCustodialWallet()
 
     def sign_transaction(self, transaction):
-        return sign_transaction(transaction, self.nonce, self.public_address)
+        return sign_transaction(transaction, str(self.user.id))
 
 
 class CustodialWallet(WalletAuthModel):
@@ -38,4 +38,4 @@ class CustodialWallet(WalletAuthModel):
         return sign_message(message, str(self.user.id))
 
     def sign_transaction(self, transaction):
-        return sign_transaction(transaction, str(self.user.id), self.public_address)
+        return sign_transaction(transaction, str(self.user.id))

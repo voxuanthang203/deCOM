@@ -1,6 +1,6 @@
 from rest_framework import response, views
 
-from ..models import CannotSignMessageNonCustodialWallet
+from ..models import CannotSignNonCustodialWallet
 from .serializers import SignMessageSerializer, SignTransactionSerializer
 
 
@@ -11,7 +11,7 @@ class SignMessageView(views.APIView):
         message = serializer.validated_data.get("message")
         try:
             signature = self.request.user.wallet.sign_message(message)
-        except CannotSignMessageNonCustodialWallet:
+        except CannotSignNonCustodialWallet:
             return response.Response(
                 {"message": "Cannot sign message with non-custodial wallet"},
                 status=400,
@@ -24,5 +24,16 @@ class SignTransactionView(views.APIView):
         serializer = SignTransactionSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         transaction = serializer.validated_data.get("transaction")
-        signature = self.request.user.wallet.sign_transaction(transaction)
+        try:
+            signature = self.request.user.wallet.sign_transaction(transaction)
+        except CannotSignNonCustodialWallet:
+            return response.Response(
+                {"message": "Cannot sign transaction with non-custodial wallet"},
+                status=400,
+            )
+        except TypeError:
+            return response.Response(
+                {"message": "Invalid transaction data"},
+                status=400,
+            )
         return response.Response({"signature": signature})
