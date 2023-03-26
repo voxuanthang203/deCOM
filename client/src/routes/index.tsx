@@ -24,7 +24,7 @@ const Loadable =
 // AUTHENTICATION
 const Login = Loadable(lazy(() => import('pages/auth/Login')));
 const Register = Loadable(lazy(() => import('pages/auth/Register')));
-const ResetPassword = Loadable(lazy(() => import('pages/auth/ResetPassword')));
+const ResetPassword = Loadable(lazy(() => import('pages/auth/ForgetPassword')));
 // const VerifyCode = Loadable(lazy(() => import('pages/auth/VerifyCode')));
 
 // DASHBOARD
