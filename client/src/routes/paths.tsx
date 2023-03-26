@@ -3,7 +3,7 @@ function path(root: string, sublink: string) {
 }
 
 const ROOTS_AUTH = '/auth';
-const ROOTS_DASHBOARD = '/app/dashboard';
+const ROOTS_DASHBOARD = '/marketplace';
 
 // ----------------------------------------------------------------------
 

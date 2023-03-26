@@ -28,7 +28,7 @@ const ResetPassword = Loadable(lazy(() => import('pages/auth/ForgetPassword')));
 const VerifyCode = Loadable(lazy(() => import('pages/auth/VerifyCode')));
 
 // DASHBOARD
-const DashboardLayout = Loadable(lazy(() => import('layouts/DashboardLayout')));
+const Marketplace = Loadable(lazy(() => import('pages/dashboard/Marketplace')));
 
 // MAIN
 const NotFound = Loadable(lazy(() => import('pages/Page404')));
@@ -36,10 +36,10 @@ const NotFound = Loadable(lazy(() => import('pages/Page404')));
 const router = createBrowserRouter([
   // AUTHENTICATION
   {
-    path: '/auth',
+    path: 'auth',
     children: [
       {
-        path: '/auth/login',
+        path: 'login',
         element: (
           <GuestGuard>
             <Login />
@@ -47,29 +47,26 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: '/auth/register',
+        path: 'register',
         element: (
           <GuestGuard>
             <Register />
           </GuestGuard>
         ),
       },
-      { path: '/auth/reset-password', element: <ResetPassword /> },
-      { path: '/auth/verify', element: <VerifyCode /> },
+      { path: 'reset-password', element: <ResetPassword /> },
+      { path: 'verify', element: <VerifyCode /> },
     ],
   },
 
   // DASHBOARD
   {
-    path: '/app/dashboard',
+    path: '/marketplace',
     element: (
       <AuthGuard>
-        <DashboardLayout />
+        <Marketplace />
       </AuthGuard>
-    ),
-    children: [
-      { element: <Navigate to={PATH_AFTER_LOGIN} replace />, index: true },
-    ],
+    )
   },
 
   // MAIN
