@@ -7,7 +7,7 @@ const axiosInstance = axios.create({
 });
 
 const loginPage = () => {
-  window.location.href = `/auth/sign-in?returnPath=${encodeURIComponent(
+  window.location.href = `/auth/login?returnPath=${encodeURIComponent(
     window.location.pathname + window.location.search
   )}`;
 };
@@ -19,11 +19,11 @@ axiosInstance.interceptors.response.use(
     if (error.response.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
       try {
-        const { data } = await axiosInstance.post('/auth/refresh', {
+        const { data } = await axiosInstance.post('/api-auth/v1/refresh', {
           refreshToken: localStorage.getItem('refreshToken'),
         });
-        setAccessToken(data.accessToken);
-        setRefreshToken(data.refreshToken);
+        setAccessToken(data.access_token);
+        setRefreshToken(data.refresh_token);
         return axiosInstance(originalRequest);
       } catch (err) {
         setAccessToken();

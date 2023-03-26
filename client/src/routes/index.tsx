@@ -25,10 +25,10 @@ const Loadable =
 const Login = Loadable(lazy(() => import('pages/auth/Login')));
 const Register = Loadable(lazy(() => import('pages/auth/Register')));
 const ResetPassword = Loadable(lazy(() => import('pages/auth/ForgetPassword')));
-// const VerifyCode = Loadable(lazy(() => import('pages/auth/VerifyCode')));
+const VerifyCode = Loadable(lazy(() => import('pages/auth/VerifyCode')));
 
 // DASHBOARD
-const DashboardLayout = Loadable(lazy(() => import('layouts/DashboardLayout')));
+const Marketplace = Loadable(lazy(() => import('pages/dashboard/Marketplace')));
 
 // MAIN
 const NotFound = Loadable(lazy(() => import('pages/Page404')));
@@ -55,25 +55,22 @@ const router = createBrowserRouter([
         ),
       },
       { path: 'reset-password', element: <ResetPassword /> },
-      // { path: 'verify', element: <VerifyCode /> },
+      { path: 'verify', element: <VerifyCode /> },
     ],
   },
 
   // DASHBOARD
   {
-    path: 'dashboard',
+    path: '/marketplace',
     element: (
       <AuthGuard>
-        <DashboardLayout />
+        <Marketplace />
       </AuthGuard>
-    ),
-    children: [
-      { element: <Navigate to={PATH_AFTER_LOGIN} replace />, index: true },
-    ],
+    )
   },
 
   // MAIN
-  { path: '404', element: <NotFound /> },
+  { path: '/404', element: <NotFound /> },
   { path: '*', element: <Navigate to="/404" replace /> },
 ]);
 

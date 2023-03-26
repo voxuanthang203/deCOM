@@ -1,8 +1,29 @@
+import { onLogin } from 'api/auth';
+import { Discord, Github } from 'api/oauth';
 import Page from 'components/Page';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { PATH_AUTH } from 'routes/paths';
+import useAuth  from 'stores/useAuth';
 
 const Login = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const { login } = useAuth();
+
+
+  const handleLogin = async () => {
+    onLogin({
+        email,
+        password
+      }).then((res) => {
+        login(res.access_token, res.refresh_token);
+        window.location.href = '/marketplace'
+      }).catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <Page title="Login">
       <div className="min-h-full flex">
@@ -38,17 +59,16 @@ const Login = () => {
                   <div className="mt-1 grid grid-cols-3 gap-3">
                     <div>
                       <Link
-                        to="https://discord.com/api/oauth2/authorize?client_id=1089048608818593873&redirect_uri=http%3A%2F%2F127.0.0.1%3A5137%2Foauth%2Fcallback%2Fdiscord&response_type=code&scope=email"
+                        to={Discord}
                         className="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
                       >
                         <span className="sr-only">Sign in with Discord</span>
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
-                          fill="currentColor"
+                          fill="#7289D7"
                           className="bi bi-discord w-5 h-5"
                           viewBox="0 0 16 16"
                         >
-                          {' '}
                           <path d="M13.545 2.907a13.227 13.227 0 0 0-3.257-1.011.05.05 0 0 0-.052.025c-.141.25-.297.577-.406.833a12.19 12.19 0 0 0-3.658 0 8.258 8.258 0 0 0-.412-.833.051.051 0 0 0-.052-.025c-1.125.194-2.22.534-3.257 1.011a.041.041 0 0 0-.021.018C.356 6.024-.213 9.047.066 12.032c.001.014.01.028.021.037a13.276 13.276 0 0 0 3.995 2.02.05.05 0 0 0 .056-.019c.308-.42.582-.863.818-1.329a.05.05 0 0 0-.01-.059.051.051 0 0 0-.018-.011 8.875 8.875 0 0 1-1.248-.595.05.05 0 0 1-.02-.066.051.051 0 0 1 .015-.019c.084-.063.168-.129.248-.195a.05.05 0 0 1 .051-.007c2.619 1.196 5.454 1.196 8.041 0a.052.052 0 0 1 .053.007c.08.066.164.132.248.195a.051.051 0 0 1-.004.085 8.254 8.254 0 0 1-1.249.594.05.05 0 0 0-.03.03.052.052 0 0 0 .003.041c.24.465.515.909.817 1.329a.05.05 0 0 0 .056.019 13.235 13.235 0 0 0 4.001-2.02.049.049 0 0 0 .021-.037c.334-3.451-.559-6.449-2.366-9.106a.034.034 0 0 0-.02-.019Zm-8.198 7.307c-.789 0-1.438-.724-1.438-1.612 0-.889.637-1.613 1.438-1.613.807 0 1.45.73 1.438 1.613 0 .888-.637 1.612-1.438 1.612Zm5.316 0c-.788 0-1.438-.724-1.438-1.612 0-.889.637-1.613 1.438-1.613.807 0 1.451.73 1.438 1.613 0 .888-.631 1.612-1.438 1.612Z" />{' '}
                         </svg>
                       </Link>
@@ -119,14 +139,13 @@ const Login = () => {
 
                     <div>
                       <Link
-                        to="https://github.com/login/oauth/authorize?client_id=9fe257e93406847c679f&redirect_uri=http%3A%2F%2F127.0.0.1%3A5173%2Foauth%2Fcallback%2Fgithub&scope=user:email&prompt=consent"
+                        to={Github}
                         className="w-full inline-flex  justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
                       >
                         <span className="sr-only">Sign in with GitHub</span>
                         <svg
                           className="w-5 h-5"
                           aria-hidden="true"
-                          fill="currentColor"
                           viewBox="0 0 20 20"
                         >
                           <path
@@ -156,7 +175,7 @@ const Login = () => {
               </div>
 
               <div className="mt-6">
-                <form action="#" method="POST" className="space-y-6">
+                <form className="space-y-6">
                   <div>
                     <label
                       htmlFor="email"
@@ -169,6 +188,8 @@ const Login = () => {
                         id="email"
                         name="email"
                         type="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
                         autoComplete="email"
                         required
                         className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
@@ -188,6 +209,8 @@ const Login = () => {
                         id="password"
                         name="password"
                         type="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
                         autoComplete="current-password"
                         required
                         className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
@@ -223,7 +246,8 @@ const Login = () => {
 
                   <div>
                     <button
-                      type="submit"
+                      type="button"
+                      onClick={() => handleLogin()}
                       className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                     >
                       Sign in

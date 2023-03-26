@@ -5,21 +5,16 @@ const REST_API_URL = "https://lqdon.com";
 interface IRegister {
   email?: string;
   username?: string;
-  password: string;
+  password1: string;
   password2: string;
 }
 
 export const onRegister = async (body: IRegister) => {
-  try {
     const res = await axios.post(
       `${REST_API_URL}/api-auth/v1/registration/`,
       body
     );
-
     return res.data;
-  } catch (err) {
-    console.error(err);
-  }
 };
 
 
@@ -28,15 +23,11 @@ interface IVerifyEmail {
 }
 
 export const onVerifyEmail = async (body: IVerifyEmail) => {
-  try {
     const res = await axios.post(
       `${REST_API_URL}/api-auth/v1/registration/verify-email/`,
       body
     );
     return res.data;
-  } catch (err) {
-    console.error(err);
-  }
 };
 
 interface IResendVerify {
@@ -44,15 +35,11 @@ interface IResendVerify {
 }
 
 export const onResendVerify = async (body: IResendVerify) => {
-  try {
     const res = await axios.post(
       `${REST_API_URL}/api-auth/v1/registration/resend-email/`,
       body
     );
     return res.data;
-  } catch (err) {
-    console.error(err);
-  }
 };
 
 interface ILogin {
@@ -61,179 +48,181 @@ interface ILogin {
 }
 
 export const onLogin = async (body: ILogin) => {
-  try {
     const res = await axios.post(
       `${REST_API_URL}/api-auth/v1/login/`,
       body
     );
     return res.data;
-  } catch (err) {
-    console.error(err);
-  }
 };
 
-// interface IResetPassword {
+interface IResetPassword {
+  email: string;
+}
 
-// }
-
-export const onResetPassword = async (body) => {
-  try {
-    const { res } = await axios.post(
+export const onResetPassword = async (body: IResetPassword) => {
+    const res  = await axios.post(
       `${REST_API_URL}/api-auth/v1/password/reset/`,
       body
     );
     return res.data;
-  } catch (err) {
-    console.error(err.message);
-  }
 };
 
-export const onResetPasswordConfirm = async (body) => {
-  try {
-    const { res } = await axios.post(
+interface IResetPasswordConfirm {
+  uid: string;
+  token: string;
+  new_password1: string;
+  new_password2: string;
+}
+
+export const onResetPasswordConfirm = async (body: IResetPasswordConfirm) => {
+    const res  = await axios.post(
       `${REST_API_URL}/api-auth/v1/password/reset/confirm/`,
       body
     );
     return res.data;
-  } catch (err) {
-    console.error(err.message);
-  }
+  
 };
 
-export const onResetPasswordChange = async (body) => {
-  try {
-    const { res } = await axios.post(
+interface IResetPasswordChange {
+  new_password1: string;
+  new_password2: string;
+  old_password: string;
+}
+
+export const onResetPasswordChange = async (body: IResetPasswordChange) => {
+    const res  = await axios.post(
       `${REST_API_URL}/api-auth/v1/password/change/`,
       body
     );
     return res.data;
-  } catch (err) {
-    console.error(err.message);
-  }
 };
 
-export const onReFreshToken = async (body) => {
-  try {
-    const { res } = await axios.post(
+
+interface IReFreshToken {
+  refresh: string;
+}
+
+export const onReFreshToken = async (body: IReFreshToken) => {
+    const res  = await axios.post(
       `${REST_API_URL}/api-auth/v1/token/refresh/`,
       body
     );
     return res.data;
-  } catch (err) {
-    console.error(err.message);
-  }
 };
 
-export const onVerifyToken = async (body) => {
-  try {
-    const { res } = await axios.post(
+interface IVerifyToken {
+  token: string;
+}
+
+export const onVerifyToken = async (body: IVerifyToken) => {
+    const res  = await axios.post(
       `${REST_API_URL}/api-auth/v1/token/verify/`,
       body
     );
     return res.data;
-  } catch (err) {
-    console.error(err.message);
-  }
 };
 
-export const onUserDetail = async (body) => {
-  try {
-    const { res } = await axios.get(`${REST_API_URL}/api-auth/v1/user/`, body);
-    return res.data;
-  } catch (err) {
-    console.error(err.message);
+
+// export const onUserDetail = async () => {
+//   
+//     const { res } = await axios.get(`${REST_API_URL}/api-auth/v1/user/`, body);
+//     return res.data;
+//   } catch (err) {
+//     console.error(err);
+//   }
+// };
+
+// export const onGetMe = async (body) => {
+//   
+//     const { res } = await axios.get(`${REST_API_URL}/api/v1/me/`, body);
+//     return res.data;
+//   } catch (err) {
+//     console.error(err);
+//   }
+// };
+
+interface IRegisterMetamask {
+  user: {
+    email?: string;
+    username?: string;
   }
+  public_address: string;
+}
+
+export const onRegisterMetamask = async (body: IRegisterMetamask) => {
+  const res  = await axios.post(
+    `${REST_API_URL}/api-auth/v1/metamask/registration/`,
+    body
+  );
+  return res.data;
 };
 
-export const onGetMe = async (body) => {
-  try {
-    const { res } = await axios.get(`${REST_API_URL}/api/v1/me/`, body);
-    return res.data;
-  } catch (err) {
-    console.error(err.message);
-  }
+interface IGetNonce {
+  public_address: string;
+}
+
+export const onGetNonce = async (body: IGetNonce) => {
+  const { public_address } = body;
+  const res = await axios.get(
+    `${REST_API_URL}/api-auth/v1/metamask/registration/${public_address}`
+  );
+  return res.data;
 };
 
-export const onRegisterMetamask = async (body) => {
-  try {
-    const { res } = await axios.post(
-      `${REST_API_URL}/api-auth/v1/metamask/registration/`,
-      body
-    );
-    return res.data;
-  } catch (err) {
-    console.error(err.message);
-  }
+interface ILoginMetamask {
+  signature: string;
+}
+
+export const onLoginMetamask = async (body: ILoginMetamask) => {
+  const res  = await axios.post(
+    `${REST_API_URL}/api-auth/v1/metamask/login/${body.signature}}`,
+    body
+  );
+  return res.data;
 };
 
-export const onGetNonce = async (body) => {
-  try {
-    const { res } = await axios.get(
-      `${REST_API_URL}/api-auth/v1/metamask/registration/0xed00Af4d737712dAE2e4a2DaB61E257053862191`,
-      body
-    );
-    return res.data;
-  } catch (err) {
-    console.error(err.message);
-  }
+interface IRegisterOauth {
+  code: string;
+}
+
+export const onDiscord = async (body: IRegisterOauth) => {
+  const res  = await axios.post(
+    `${REST_API_URL}/api-auth/v1/discord/`,
+    body
+  );
+  return res.data;
 };
 
-export const onLoginMetamask = async (body) => {
-  try {
-    const { res } = await axios.post(
-      `${REST_API_URL}/api-auth/v1/metamask/login/0xed00Af4d737712dAE2e4a2DaB61E257053862191`,
-      body
-    );
-    return res.data;
-  } catch (err) {
-    console.error(err.message);
-  }
+
+
+export const onGithub = async (body: IRegisterOauth) => {
+  const res  = await axios.post(
+    `${REST_API_URL}/api-auth/v1/github/`,
+    body
+  );
+  return res.data;
 };
 
-export const onDiscord = async (body) => {
-  try {
-    const { res } = await axios.post(
-      `${REST_API_URL}/api-auth/v1/discord/`,
-      body
-    );
-    return res.data;
-  } catch (err) {
-    console.error(err.message);
-  }
-};
+// export const onSignMessage = async (body) => {
+//   
+//     const res  = await axios.post(
+//       `${REST_API_URL}/api/v1/sign-message/`,
+//       body
+//     );
+//     return res.data;
+//   } catch (err) {
+//     console.error(err);
+//   }
+// };
 
-export const onGithub = async (body) => {
-  try {
-    const { res } = await axios.post(
-      `${REST_API_URL}/api-auth/v1/github/`,
-      body
-    );
-    return res.data;
-  } catch (err) {
-    console.error(err.message);
-  }
-};
-
-export const onSignMessage = async (body) => {
-  try {
-    const { res } = await axios.post(
-      `${REST_API_URL}/api/v1/sign-message/`,
-      body
-    );
-    return res.data;
-  } catch (err) {
-    console.error(err.message);
-  }
-};
-
-export const onNewRequest = async (body) => {
-  try {
-    const { res } = await axios.post(
-      `${REST_API_URL}/api-auth/v1/registration/manufacturer/`,
-      body
-    );
-    return res.data;
-  } catch (err) {
-    console.error(err.message);
-  }
-};
+// export const onNewRequest = async (body) => {
+//   
+//     const res  = await axios.post(
+//       `${REST_API_URL}/api-auth/v1/registration/manufacturer/`,
+//       body
+//     );
+//     return res.data;
+//   } catch (err) {
+//     console.error(err);
+//   }
+// };

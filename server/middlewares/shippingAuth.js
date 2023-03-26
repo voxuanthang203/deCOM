@@ -2,7 +2,7 @@ const db = require("../model/index");
 const users = db.User;
 
 const auth = async (req, res, next) => {
-  try {
+  
     const apikey = req.header("Authorization");
     console.log("APIKEY:-----------------", apikey);
     const user = await users.findOne({ where: { apiKey: apikey } });

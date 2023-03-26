@@ -15,6 +15,7 @@ export default function AuthGuard({ children }: { children: React.ReactNode }) {
     if (pathname !== requestedLocation) {
       setRequestedLocation(pathname);
     }
+    console.log('AuthGuard');
     return <Login />;
   }
 
