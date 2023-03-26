@@ -25,7 +25,7 @@ const Loadable =
 const Login = Loadable(lazy(() => import('pages/auth/Login')));
 const Register = Loadable(lazy(() => import('pages/auth/Register')));
 const ResetPassword = Loadable(lazy(() => import('pages/auth/ForgetPassword')));
-// const VerifyCode = Loadable(lazy(() => import('pages/auth/VerifyCode')));
+const VerifyCode = Loadable(lazy(() => import('pages/auth/VerifyCode')));
 
 // DASHBOARD
 const DashboardLayout = Loadable(lazy(() => import('layouts/DashboardLayout')));
@@ -36,10 +36,10 @@ const NotFound = Loadable(lazy(() => import('pages/Page404')));
 const router = createBrowserRouter([
   // AUTHENTICATION
   {
-    path: 'auth',
+    path: '/auth',
     children: [
       {
-        path: 'login',
+        path: '/auth/login',
         element: (
           <GuestGuard>
             <Login />
@@ -47,21 +47,21 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: 'register',
+        path: '/auth/register',
         element: (
           <GuestGuard>
             <Register />
           </GuestGuard>
         ),
       },
-      { path: 'reset-password', element: <ResetPassword /> },
-      // { path: 'verify', element: <VerifyCode /> },
+      { path: '/auth/reset-password', element: <ResetPassword /> },
+      { path: '/auth/verify', element: <VerifyCode /> },
     ],
   },
 
   // DASHBOARD
   {
-    path: 'dashboard',
+    path: '/app/dashboard',
     element: (
       <AuthGuard>
         <DashboardLayout />
@@ -73,7 +73,7 @@ const router = createBrowserRouter([
   },
 
   // MAIN
-  { path: '404', element: <NotFound /> },
+  { path: '/404', element: <NotFound /> },
   { path: '*', element: <Navigate to="/404" replace /> },
 ]);
 

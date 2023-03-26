@@ -6,7 +6,7 @@ const create = async (req, res) => {
   const { nftAddress, tokenId, phoneNumber, address } = req.body;
   if (!nftAddress || !tokenId || !phoneNumber || !address)
     res.status(400).json({ error: "Invalid arguments" });
-  try {
+  
     const transaction = await transactions.create({
       nftAddress,
       tokenId,
@@ -22,7 +22,7 @@ const create = async (req, res) => {
 
 // Get all transactions
 const get = async (req, res) => {
-  try {
+  
     const transactions = await transactions.findAll();
     res.status(200).json(users);
   } catch (e) {
@@ -33,7 +33,7 @@ const get = async (req, res) => {
 
 const remove = async (req, res) => {
   const { id } = req.params;
-  try {
+  
     await transactions.destroy({
       where: {
         id,

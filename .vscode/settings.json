@@ -1,0 +1,13 @@
+{
+  "[typescriptreact]": {
+    "editor.formatOnPaste": false,
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+  },
+  "[javascript]": {
+    "editor.formatOnPaste": false,
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+  },
+  "prettier.configPath": ".prettierrc.json",
+}

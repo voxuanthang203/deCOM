@@ -7,7 +7,7 @@ const axiosInstance = axios.create({
 });
 
 const loginPage = () => {
-  window.location.href = `/auth/sign-in?returnPath=${encodeURIComponent(
+  window.location.href = `/auth/login?returnPath=${encodeURIComponent(
     window.location.pathname + window.location.search
   )}`;
 };
