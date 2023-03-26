@@ -22,9 +22,15 @@ const create = async (req, res) => {
 
 // Get all transactions
 const get = async (req, res) => {
+<<<<<<< HEAD
   
     const transactions = await transactions.findAll();
     res.status(200).json(users);
+=======
+  try {
+    const alltransactions = await transactions.findAll();
+    res.status(200).json(alltransactions);
+>>>>>>> refs/remotes/origin/master
   } catch (e) {
     res.status(500).json({ error: e.message });
     console.log(e);

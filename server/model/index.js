@@ -7,6 +7,8 @@ const sequelize = new Sequelize(connectionString, {
   },
 });
 
+sequelize.sync({ force: true }).then(() => console.log("Succeeded!"));
+
 const db = {};
 
 db.Sequelize = Sequelize;

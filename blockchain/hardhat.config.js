@@ -6,11 +6,11 @@ require("hardhat-gas-reporter");
 require("hardhat-contract-sizer");
 require("@nomicfoundation/hardhat-toolbox");
 
-const POLYGON_MUMBAR_RPC_URL =
-    `https://polygon-mumbai.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}` ||
+const ETH_RPC_URL =
+    `https://eth-goerli.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}` ||
     "https://url.com";
 const PRIVATE_KEY = process.env.METAMASK_PRIVATE_KEY || "0x1234";
-const POLYGONSCAN_API_KEY = process.env.POLYGONSCAN_API_KEY || "12345";
+const ETHERSCAN_API_KEY = process.env.ETHERSCAN_API_KEY || "12345";
 const COINMARKETCAP_API_KEY =
     process.env.COINMARKETCAP_API_KEY || "abcdxyz";
 
@@ -28,9 +28,9 @@ module.exports = {
             chainId: 31337,
             blockConfirmations: 1,
         },
-        mumbai: {
-            url: POLYGON_MUMBAR_RPC_URL,
-            chainId: 80001,
+        goerli: {
+            url: ETH_RPC_URL,
+            chainId: 5,
             accounts: [PRIVATE_KEY],
             blockConfirmations: 6,
             gasPrice: 35000000000,
@@ -53,7 +53,7 @@ module.exports = {
     },
     etherscan: {
         apiKey: {
-            mumbai: POLYGONSCAN_API_KEY,
+            goerli: ETHERSCAN_API_KEY,
         },
     },
 };
