@@ -1,9 +1,13 @@
 import Button from 'components/Button';
 import Item from 'components/Item';
+import NavBar from 'components/Navbar';
 
-export const MarketPlace = () => {
+const MarketPlace = () => {
   return (
-    <div>
+    <div style={{
+      background: "radial-gradient(22.25% 31.49% at 58.78% 47.36%, #3c3368 6.81%, #080228 100%"
+    }}>
+      <NavBar />
       <div className="h-screen">
         <hr className="mx-10 border-[#686262]" />
         <h1 className=" font-bold text-white mx-16 my-10 text-3xl font-[Archivo Black] ">
@@ -34,3 +38,5 @@ export const MarketPlace = () => {
     </div>
   );
 };
+
+export default MarketPlace;

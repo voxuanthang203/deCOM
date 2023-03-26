@@ -28,7 +28,7 @@ const VerifyCode = Loadable(lazy(() => import('pages/auth/VerifyCode')));
 
 // DASHBOARD
 const Home = Loadable(lazy(() => import('pages/index')));
-const Marketplace = Loadable(lazy(() => import('pages/dashboard/Marketplace')));
+const Marketplace = Loadable(lazy(() => import('pages/Marketplace')));
 
 // MAIN
 const NotFound = Loadable(lazy(() => import('pages/Page404')));
@@ -65,11 +65,7 @@ const router = createBrowserRouter([
   // DASHBOARD
   {
     path: '/marketplace',
-    element: (
-      <AuthGuard>
-        <Marketplace />
-      </AuthGuard>
-    )
+    element: <Marketplace />
   },
 
   // MAIN
