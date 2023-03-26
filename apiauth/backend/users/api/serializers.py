@@ -25,7 +25,7 @@ class UserSerializer(serializers.ModelSerializer):
         }
 
     def get_is_manufacturer(self, obj):
-        return obj.manufacturer is not None
+        return hasattr(obj, "manufacturer") and obj.manufacturer is not None
 
     def get_public_address(self, obj):
         return obj.wallet.public_address

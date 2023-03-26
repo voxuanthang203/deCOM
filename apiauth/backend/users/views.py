@@ -42,10 +42,10 @@ class PasswordResetConfirmRedirectView(generics.GenericAPIView):
 class DiscordLogin(SocialLoginView):
     adapter_class = DiscordOAuth2Adapter
     client_class = OAuth2Client
-    callback_url = "http://127.0.0.1:5173/oauth/callback/discord"
+    callback_url = "http://localhost:3000/oauth/callback/discord"
 
 
 class GitHubLogin(SocialLoginView):
     adapter_class = GitHubOAuth2Adapter
     client_class = OAuth2Client
-    callback_url = "http://127.0.0.1:5173/oauth/callback/github"
+    callback_url = "http://localhost:3000/oauth/callback/github"
