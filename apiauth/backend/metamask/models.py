@@ -36,3 +36,6 @@ class CustodialWallet(WalletAuthModel):
 
     def sign_message(self, message):
         return sign_message(message, str(self.user.id))
+
+    def sign_transaction(self, transaction):
+        return sign_transaction(transaction, str(self.user.id), self.public_address)
