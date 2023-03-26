@@ -3,7 +3,7 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 from polymorphic.models import PolymorphicModel
 
-from .hsm_simulator import sign_message
+from .hsm_simulator import sign_message, sign_transaction
 from .utils import generate_random
 
 User = get_user_model()
@@ -25,6 +25,9 @@ class NonCustodialWallet(WalletAuthModel):
 
     def sign_message(self, message):
         raise CannotSignMessageNonCustodialWallet()
+
+    def sign_transaction(self, transaction):
+        return sign_transaction(transaction, self.nonce, self.public_address)
 
 
 class CustodialWallet(WalletAuthModel):
