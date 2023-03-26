@@ -29,6 +29,7 @@ const VerifyCode = Loadable(lazy(() => import('pages/auth/VerifyCode')));
 // DASHBOARD
 const Home = Loadable(lazy(() => import('pages/index')));
 const Marketplace = Loadable(lazy(() => import('pages/Marketplace')));
+const Manufacturer = Loadable(lazy(() => import('pages/Manufacturer')));
 
 // MAIN
 const NotFound = Loadable(lazy(() => import('pages/Page404')));
@@ -62,10 +63,13 @@ const router = createBrowserRouter([
     ],
   },
 
-  // DASHBOARD
   {
     path: '/marketplace',
     element: <Marketplace />
+  },
+  {
+    path: '/manufacturer',
+    element: <Manufacturer />
   },
 
   // MAIN
