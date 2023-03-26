@@ -1,4 +1,4 @@
-export const Item = (props: React.HTMLAttributes<HTMLDivElement>) => {
+const Item = (props: React.HTMLAttributes<HTMLDivElement>) => {
   const { className, ...rest } = props;
   return (
     <div className={`box overflow-hidden ${className}`} {...rest}>
@@ -17,3 +17,5 @@ export const Item = (props: React.HTMLAttributes<HTMLDivElement>) => {
     </div>
   );
 };
+
+export default Item;
