@@ -20,3 +20,50 @@ body {
   width: 100%;
   height: 100%;
 }
+
+@layer components {
+  .bgCustom {
+    background: radial-gradient(
+      22.25% 31.49% at 58.78% 47.36%,
+      #3c3368 6.81%,
+      #080228 100%
+    );
+  }
+  .headerCustom {
+    font-family: "Archivo Black";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 25px;
+    line-height: 33px;
+
+    color: #ffffff;
+  }
+
+  .landingTitle {
+    font-family: "Ubuntu";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 45px;
+    line-height: 63px;
+    width: 450px;
+    height: 203px;
+  }
+  .box {
+    width: 200px;
+    height: 250px;
+    background: #fceded;
+    border-radius: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+  }
+  .box2 {
+    background: #080228;
+    border: 1px solid #3e3bdc;
+    border-radius: 20px;
+    box-sizing: border-box;
+    width: 600px;
+    height: 180px;
+    margin: auto;
+    margin-bottom: 30px;
+  }
+}

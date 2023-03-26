@@ -3,7 +3,6 @@ import GuestGuard from 'guards/GuestGuard';
 import { lazy, Suspense } from 'react';
 import { createBrowserRouter, Navigate, useLocation } from 'react-router-dom';
 import LoadingScreen from 'routes/LoadingScreen';
-import { PATH_AFTER_LOGIN } from 'config';
 
 const Loadable =
   (Component: React.ComponentType) =>
@@ -28,12 +27,16 @@ const ResetPassword = Loadable(lazy(() => import('pages/auth/ForgetPassword')));
 const VerifyCode = Loadable(lazy(() => import('pages/auth/VerifyCode')));
 
 // DASHBOARD
+const Home = Loadable(lazy(() => import('pages/index')));
 const Marketplace = Loadable(lazy(() => import('pages/dashboard/Marketplace')));
 
 // MAIN
 const NotFound = Loadable(lazy(() => import('pages/Page404')));
 
 const router = createBrowserRouter([
+  // Home
+  { path: '/', element: <Home /> },
+
   // AUTHENTICATION
   {
     path: 'auth',
