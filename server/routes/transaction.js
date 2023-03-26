@@ -14,6 +14,6 @@ router.get("/all", auth, get);
 router.delete("/:id", auth, remove);
 
 // Create a new transaction
-router.post("/create", auth, create);
+router.post("/create", create);
 
 module.exports = router;

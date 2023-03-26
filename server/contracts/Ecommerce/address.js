@@ -1,1 +1,3 @@
-export const ecommerceAddress = "0x15FF1badAD1e28754728cdD25E05CE167a99A367";
+const ecommerceAddress = "0x676474E80466f6286A82A238B683055464299869";
+
+module.exports = { ecommerceAddress };

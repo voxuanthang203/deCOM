@@ -1,11 +1,12 @@
-const jwt = require("jsonwebtoken");
 const db = require("../model/index");
-const users = db.users;
+const users = db.User;
 
 const auth = async (req, res, next) => {
   try {
     const apikey = req.header("Authorization");
+    console.log("APIKEY:-----------------", apikey);
     const user = await users.findOne({ where: { apiKey: apikey } });
+    console.log("User: ", user);
     if (!user) throw new Error("API Key does not exist!");
     next();
   } catch (e) {

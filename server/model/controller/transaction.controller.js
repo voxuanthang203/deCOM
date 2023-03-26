@@ -23,8 +23,8 @@ const create = async (req, res) => {
 // Get all transactions
 const get = async (req, res) => {
   try {
-    const transactions = await transactions.findAll();
-    res.status(200).json(users);
+    const alltransactions = await transactions.findAll();
+    res.status(200).json(alltransactions);
   } catch (e) {
     res.status(500).json({ error: e.message });
     console.log(e);

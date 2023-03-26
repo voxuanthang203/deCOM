@@ -1,7 +1,7 @@
 const db = require("../index.js");
 const users = db.User;
 
-const create = async (req, res) => {
+exports.create = async function (req, res) {
   const { companyName } = req.body;
   try {
     if (!companyName) throw new Error("Invalid arguments");
@@ -11,5 +11,3 @@ const create = async (req, res) => {
     res.status(400).json({ error: e.message });
   }
 };
-
-module.exports = { create };
