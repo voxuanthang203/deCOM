@@ -1,5 +1,27 @@
 # deCOM - Decentralized E-Commerce Platform
 
+## UI Demo
+
+- **Homepage**:
+
+  <img width="1512" alt="original" src="https://github.com/user-attachments/assets/2e965c39-9dec-4d35-b769-8d32296b8c33">
+
+- **Sign in**:
+  
+  ![gallery](https://github.com/user-attachments/assets/b088cd9b-3e42-444b-bbb1-e59fcaea4a60)
+
+- **Sign up**: 
+
+![gallery (1)](https://github.com/user-attachments/assets/f176818e-d057-4414-938e-4ead5cfc96a4)
+
+- **Listing**:
+
+![gallery (2)](https://github.com/user-attachments/assets/9a3e938e-fce2-4cf0-871e-9a06e54bebc3)
+
+- **NFTs**:
+
+![gallery (3)](https://github.com/user-attachments/assets/3694daee-e615-49cd-a217-16ed0ec167ee)
+
 ## Inspiration
 The economic impact of counterfeiting and piracy in the U.S. is immense, with the National Intellectual Property Rights Coordination Center (IPR Center) estimating losses up to $600 billion annually. deCOM is our solution to combat this issue, leveraging blockchain technology to establish a platform where buyers can confidently trust the authenticity of their purchases.
 
@@ -58,29 +80,5 @@ We’re committed to continual improvement, recognizing the fast-paced evolution
 - **solidity**
 - **tailwindcss**
 - **typescript**
-
-## UI Demo
-_Add screenshots of the platform’s interface here to demonstrate the user experience._
-
-- **Homepage**:
-
-  <img width="1512" alt="original" src="https://github.com/user-attachments/assets/2e965c39-9dec-4d35-b769-8d32296b8c33">
-
-- **Sign in**:
-  
-  ![gallery](https://github.com/user-attachments/assets/b088cd9b-3e42-444b-bbb1-e59fcaea4a60)
-
-- **Sign up**: 
-
-![gallery (1)](https://github.com/user-attachments/assets/f176818e-d057-4414-938e-4ead5cfc96a4)
-
-- **Listing**:
-
-![gallery (2)](https://github.com/user-attachments/assets/9a3e938e-fce2-4cf0-871e-9a06e54bebc3)
-
-- **NFTs**:
-
-![gallery (3)](https://github.com/user-attachments/assets/3694daee-e615-49cd-a217-16ed0ec167ee)
-
 
 deCOM is a step toward a more secure, trusted e-commerce world, ensuring the authenticity and quality of every transaction.
