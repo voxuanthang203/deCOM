@@ -47,7 +47,7 @@ class WalletAuthSerializer(serializers.ModelSerializer):
 
 
 ## Same as TokenObtainSerializer with a different validation function
-## Tech dept: make signature field dynamicaly from settings
+## Tech dept: make signature field dynamically from settings
 class WalletTokenObtainSerializer(serializers.Serializer):
     token_class = None
     signature = serializers.CharField(max_length=200)
