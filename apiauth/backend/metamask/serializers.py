@@ -46,8 +46,8 @@ class WalletAuthSerializer(serializers.ModelSerializer):
         extra_kwargs = {"user": {"wite_only": True}}
 
 
-## Same as TokenObtainSerializer with a diffrent validation function
-## Tech dept: make signature field dynamicaly from settings
+## Same as TokenObtainSerializer with a different validation function
+## Tech dept: make signature field dynamically from settings
 class WalletTokenObtainSerializer(serializers.Serializer):
     token_class = None
     signature = serializers.CharField(max_length=200)
@@ -79,7 +79,7 @@ class WalletTokenObtainSerializer(serializers.Serializer):
         return cls.token_class.for_user(user)
 
 
-## Same as TokaneObtainPairSerializer from simple-jwt but diffrent base class
+## Same as TokaneObtainPairSerializer from simple-jwt but different base class
 class TokenObtainPairSerializer(WalletTokenObtainSerializer):
     token_class = RefreshToken
 
