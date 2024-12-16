@@ -79,7 +79,7 @@ class WalletTokenObtainSerializer(serializers.Serializer):
         return cls.token_class.for_user(user)
 
 
-## Same as TokaneObtainPairSerializer from simple-jwt but diffrent base class
+## Same as TokaneObtainPairSerializer from simple-jwt but different base class
 class TokenObtainPairSerializer(WalletTokenObtainSerializer):
     token_class = RefreshToken
 
