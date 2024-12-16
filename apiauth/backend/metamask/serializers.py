@@ -46,7 +46,7 @@ class WalletAuthSerializer(serializers.ModelSerializer):
         extra_kwargs = {"user": {"wite_only": True}}
 
 
-## Same as TokenObtainSerializer with a diffrent validation function
+## Same as TokenObtainSerializer with a different validation function
 ## Tech dept: make signature field dynamicaly from settings
 class WalletTokenObtainSerializer(serializers.Serializer):
     token_class = None
