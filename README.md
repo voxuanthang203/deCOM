@@ -1,5 +1,18 @@
 # deCOM - Decentralized E-Commerce Platform
 
+## Inspiration
+The economic impact of counterfeiting and piracy in the U.S. is immense, with the National Intellectual Property Rights Coordination Center (IPR Center) estimating losses up to $600 billion annually. deCOM is our solution to combat this issue, leveraging blockchain technology to establish a platform where buyers can confidently trust the authenticity of their purchases.
+
+Our vision is to create a decentralized e-commerce platform that offers full transparency and accountability for buyers, sellers, and manufacturers. With deCOM, we aim to revolutionize online shopping by restoring trust in the global marketplace.
+
+## What It Does
+deCOM is a next-generation e-commerce platform operating in a decentralized environment. It enables:
+- **Sellers** to prove product ownership through smart contracts, digital signatures, and immutable records.
+- **Buyers** to verify product authenticity, ensuring they purchase only genuine items.
+- **Manufacturers** to mint NFTs, showcasing unique product features and adding value. These NFTs are then available for purchase, fostering a marketplace where authenticity and quality are prioritized.
+
+With deCOM, users can enjoy a secure, transparent, and efficient online shopping experience.
+
 ## UI Demo
 
 - **Homepage**:
@@ -21,19 +34,6 @@
 - **NFTs**:
 
 ![gallery (3)](https://github.com/user-attachments/assets/3694daee-e615-49cd-a217-16ed0ec167ee)
-
-## Inspiration
-The economic impact of counterfeiting and piracy in the U.S. is immense, with the National Intellectual Property Rights Coordination Center (IPR Center) estimating losses up to $600 billion annually. deCOM is our solution to combat this issue, leveraging blockchain technology to establish a platform where buyers can confidently trust the authenticity of their purchases.
-
-Our vision is to create a decentralized e-commerce platform that offers full transparency and accountability for buyers, sellers, and manufacturers. With deCOM, we aim to revolutionize online shopping by restoring trust in the global marketplace.
-
-## What It Does
-deCOM is a next-generation e-commerce platform operating in a decentralized environment. It enables:
-- **Sellers** to prove product ownership through smart contracts, digital signatures, and immutable records.
-- **Buyers** to verify product authenticity, ensuring they purchase only genuine items.
-- **Manufacturers** to mint NFTs, showcasing unique product features and adding value. These NFTs are then available for purchase, fostering a marketplace where authenticity and quality are prioritized.
-
-With deCOM, users can enjoy a secure, transparent, and efficient online shopping experience.
 
 ## How We Built It
 
